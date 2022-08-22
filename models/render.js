@@ -6,18 +6,20 @@ class Render {
     ul.innerHTML = ""
 
     response.forEach((element) => {
-      const li  = document.createElement("li")
-      const h3  = document.createElement("h3")
-      const btn = document.createElement("button")
-      
+      const li        = document.createElement("li")
+      const h3        = document.createElement("h3")
+      const btn       = document.createElement("button")
+
       btn.addEventListener("click", () => {
         url = url + `/${element.code}/models`
         console.log(url)
         callback(url)
       })
 
-      h3.innerText  = element.name
-      btn.innerText = "Mais informações"
+
+      h3.innerText        = element.name
+      btn.innerText       = "Mais informações"
+      
 
       li.append(h3,btn)
       ul.append(li)
@@ -30,18 +32,27 @@ class Render {
       response.forEach((element) => {
         const li  = document.createElement("li")
         const h3  = document.createElement("h3")
+        const div = document.createElement("div")
         const btn = document.createElement("button")
-        
+        btn.id = "btn"
+        const btnVoltar = document.createElement("button")
+        btnVoltar.id = "btnVoltar"
+
         btn.addEventListener("click", () => {
           url = url + `/${element.code}/years`
           console.log(url)
           callback(url)
         })
-  
-        h3.innerText  = element.name
-        btn.innerText = "Mais informações"
-  
-        li.append(h3,btn)
+
+        btnVoltar.addEventListener("click", ()=>{
+          request.brands()
+        }) 
+      
+        h3.innerText        = element.name
+        btn.innerText       = "Mais informações"
+        btnVoltar.innerText = "Voltar ao menu principal"
+        div.append(btn,btnVoltar)
+        li.append(h3,div)
         ul.append(li)
       })
   }
@@ -50,20 +61,27 @@ class Render {
       ul.innerHTML = ""
   
       response.forEach((element) => {
-        const li  = document.createElement("li")
-        const h3  = document.createElement("h3")
-        const btn = document.createElement("button")
+        const li        = document.createElement("li")
+        const h3        = document.createElement("h3")
+        const btn       = document.createElement("button")
+        btn.id = "btn"
+        const btnVoltar = document.createElement("button")
+        btnVoltar.id = "btnVoltar"
         
         btn.addEventListener("click", () => {
           url = url + `/${element.code}`
           console.log(url)
           callback(url)
         })
+        btnVoltar.addEventListener("click", ()=>{
+          request.brands()
+        })
   
-        h3.innerText  = element.name
-        btn.innerText = "Mais informações"
+        h3.innerText        = element.name
+        btn.innerText       = "Mais informações"
+        btnVoltar.innerText = "Voltar ao Menu principal" 
   
-        li.append(h3,btn)
+        li.append(h3,btn, btnVoltar)
         ul.append(li)
       })
   }
